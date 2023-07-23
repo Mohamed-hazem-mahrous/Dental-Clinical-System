@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sidebar Menu for Admin Dashboard | CodingNepal</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css.map' %}">
+    <link rel="stylesheet" href="{% static 'css/appointment_details_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-free-6.4.0-web/css/all.css' %}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+<h1>Appointment Details</h1>
+
+<div class="appointment-details">
+    <div class="detail-label">Patient:</div>
+    <div class="detail-value">{{ patient_record.name }}</div>
+
+    <div class="detail-label">Appointment Number:</div>
+    <div class="detail-value">{{ appointment_record.id }}</div>
+
+    <div class="detail-label">Date:</div>
+    <div class="detail-value">{{ appointment_record.time }}</div>
+</div>
+
+<script src="{% static 'script.js' %}"></script>
+
+</body>
+</html>
+

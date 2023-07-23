@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assistants</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../css/bootstrap.min.css.map" >
+    <link rel="stylesheet" href="../css/assistants.css" >
+    <link rel="stylesheet" href="../css/fontawesome-free-6.4.0-web/css/all.css">
+    <link rel="stylesheet" href="../css/boxicons/boxicons-master/css/boxicons.min.css" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="sidebar opened">
+    <div class="logo-details">
+      <i class='bx bxl-tooth'></i>
+      <span class="logo_name">Dental Clinic</span>
+    </div>
+    <ul class="nav-links">
+  
+  
+      <!--------------------------------- dashboard --------------------------------->
+      <li>
+        <a href="dashboard.html">
+          <i class='bx bxs-dashboard'></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </li>
+  
+  
+          <!--------------------------------- Appointments --------------------------------->
+          <li>
+            <a href="appointments.html">
+              <i class='bx bx-calendar-event'></i>
+              <span class="link_name">Appointments</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="appointments.html">Appointments</a></li>
+            </ul>
+          </li>
+  
+  
+      <!--------------------------------- patient list --------------------------------->
+      <li>
+        <a href="patient.html">
+          <i class='bx bx-list-ul'></i>
+          <span class="link_name">Patient List</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="patient.html">Patient List</a></li>
+        </ul>
+      </li>
+  
+  
+      <!--------------------------------- assisstant --------------------------------->
+      <li>
+        <a href="assistants.html">
+          <i class='bx bx-group'></i>
+          <span class="link_name">Assisstants</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="assistants.html">Assisstants</a></li>
+        </ul>
+      </li>
+  
+      
+  
+      <!--------------------------------- profile --------------------------------->
+      <li>
+        <a href="profile.html">
+          <i class='bx bx-user'></i>
+          <span class="link_name">Profile</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="profile.html">Profile</a></li>
+        </ul>
+      </li>
+  
+  
+      <!--------------------------------- profile_name --------------------------------->
+      <li>
+        <div class="profile-details">
+          <div class="name-job">
+            <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Doctor</span></div>
+          </div>
+          <i class='bx bx-log-out'></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!--------------------------------- The page --------------------------------->
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+        <span class="text">Assistants</span>
+    </div>
+
+
+    <section class="assistants-section">
+    <div class="table-wrapper">
+        <table class="assistants-table">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Individual assistants rows -->
+            <tr>
+                <td> farah </td>
+                <td> ossama </td>
+                <td>01033799708</td>
+                <td>20</td>
+                <td>male</td>
+                <td>200$</td>
+                <td>
+                    <button class="btn-view" onclick="document.querySelector('.popup').style.display = 'block'">View Details</button>
+                </td>
+            </tr>
+            <!-- Individual assistants rows -->
+            <tr>
+                <td> farah </td>
+                <td> ossama </td>
+                <td>01033799708</td>
+                <td>20</td>
+                <td>male</td>
+                <td>200$</td>
+                <td>
+                    <button class="btn-view" onclick="document.querySelector('.popup').style.display = 'block'">View Details</button>
+                </td>
+            </tr>
+            <!-- Individual assistants rows -->
+            <tr>
+                <td> farah </td>
+                <td> ossama </td>
+                <td>01033799708</td>
+                <td>20</td>
+                <td>male</td>
+                <td>200$</td>
+                <td>
+                    <button class="btn-view" onclick="document.querySelector('.popup').style.display = 'block'">View Details</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </section>
+
+</section>
+<!--*******************************************-->
+
+
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <span class="close-app" onclick="document.querySelector('.popup').style.display = 'none'">&times;</span>
+    <h2>Assistant information</h2>
+    <form>
+      <div class="form-group">
+        <label for="assistant-name">Full Name :</label>
+        <input  type="text" id="assistant-name" disabled value="khaled eyad">
+      </div>
+      <div class="form-group">
+        <label for="assistant-mobile">Phone Number :</label>
+        <input type="tel" id="assistant-mobile" value="01155334794" disabled>
+      </div>
+      <div class="form-group">
+        <label for="assistant-age">Age :</label>
+        <input type="number" id="assistant-age" value="16" disabled>
+      </div>
+      <div class="form-group">
+        <label for="assistant-salary">Salary :</label>
+        <input type="number" id="assistant-salary" value="2500" disabled>
+      </div>
+      <div class="form-group">
+        <label for="assistant-gender">Gender:</label>
+        <select id="assistant-gender" name="gender" disabled>
+            <option value="male">Male</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="assistant-hours-start">Working Hours:</label>
+        <input type="time" id="assistant-hours-start" name="hours" value="08:00" disabled>to  <input type="time" id="assistant-hours-end" name="hours" value="17:00" disabled> &
+        <input type="time" id="assistant-hours-start2" name="hours" value="09:00" disabled>to  <input type="time" id="assistant-hours-end2" name="hours" value="18:00" disabled>
+      </div>
+
+      <div class="form-group">
+        <label for="assistant-address" >Address :</label>
+        <textarea id="assistant-address" name="address" rows="4" cols="30"  disabled></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="action-btn" id="btn-submit" role="button">Edit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+</body>
+<script src="../js/assistants.js"></script>
+</html>

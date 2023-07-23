@@ -1,0 +1,374 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointment</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css.map' %}" >
+    <link rel="stylesheet" href="{% static 'css/appointments_style.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/fontawesome-free-6.4.0-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/boxicons/boxicons-master/css/boxicons.min.css' %}" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+  <!------------------------------ The Sidebar Sart ------------------------------>
+
+  <div class="sidebar opened">
+  <div class="logo-details">
+    <i class='bx bxl-tooth'></i>
+    <span class="logo_name">Dental Clinic</span>
+  </div>
+  <ul class="nav-links">
+
+
+    <!--------------------------------- dashboard --------------------------------->
+    <li>
+      <a href="dashboard.html">
+        <i class='bx bxs-dashboard'></i>
+        <span class="link_name">Dashboard</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="dashboard.html">Dashboard</a></li>
+      </ul>
+    </li>
+
+
+        <!--------------------------------- Appointments --------------------------------->
+        <li>
+          <a href="appointments.html">
+            <i class='bx bx-calendar-event'></i>
+            <span class="link_name">Appointments</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="appointments.html">Appointments</a></li>
+          </ul>
+        </li>
+
+
+    <!--------------------------------- patient list --------------------------------->
+    <li>
+      <a href="patient.html">
+        <i class='bx bx-list-ul'></i>
+        <span class="link_name">Patient List</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="patient.html">Patient List</a></li>
+      </ul>
+    </li>
+
+
+    <!--------------------------------- assisstant --------------------------------->
+    <li>
+      <a href="assistants.html">
+        <i class='bx bx-group'></i>
+        <span class="link_name">Assisstants</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="assistants.html">Assisstants</a></li>
+      </ul>
+    </li>
+
+    
+
+    <!--------------------------------- profile --------------------------------->
+    <li>
+      <a href="profile.html">
+        <i class='bx bx-user'></i>
+        <span class="link_name">Profile</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="profile.html">Profile</a></li>
+      </ul>
+    </li>
+
+
+    <!--------------------------------- profile_name --------------------------------->
+    <li>
+      <div class="profile-details">
+        <div class="name-job">
+          <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Doctor</span></div>
+        </div>
+        <i class='bx bx-log-out'></i>
+      </div>
+    </li>
+  </ul>
+</div>
+  <!------------------------------ The Sidebar End ------------------------------>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--------------------------------- The page Start --------------------------------->
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu'></i>
+
+    <span class="text">Appointments</span>
+  </div>
+
+
+  <section class="appointments-section">
+
+
+
+    
+
+    <!-- The Add Appointment Button -->
+    <span class="add-app">
+
+      <div class="app-date-chooseing">
+        <form id="date-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="datefilter" value="yes">
+        <input type="date" id="date" name="date" required>
+      </form>
+      </div>
+
+      <button class="add-app-btn" role="button" onclick="window.open('Add_new_appointment.html', '_blank');"><span class="text">Add Appointment</span></button>
+    </span>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------------------------------- The Appointment Table Start ------------------------------------->
+    <div class="table-app">
+    <table class="appointments-table">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Number</th>
+          <th>Appointment Date</th>
+          <th>Appointment Time</th>
+          <th>Appointment Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Individual appointment rows -->
+        <tr>
+          <td>
+            <span class="patient-name">John Doe</span>
+          </td>
+          <td>01033799708</td>
+          <td>May 20, 2023</td>
+          <td>10:30</td>
+          <td>Appointment</td>
+          <td>
+            <button class="action-btn" id="btn-blue" role="button" onclick="document.querySelector('.popup').style.display = 'block'">Report</button>
+            <button class="action-btn" role="button" onclick="removeRow(this)">Cancel</button>
+
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  </section>
+
+    <!------------------------------------- The Appointment Table End ------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------- Appointment details start ----------------------------------------->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <span class="close-app" onclick="document.querySelector('.popup').style.display = 'none'">&times;</span>
+    <h2>Report</h2>
+    <form>
+      <div class="form-group">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" value="123456" disabled>
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="John Doe" disabled>
+      </div>
+      <div class="form-group">
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" name="mobile" value="123-456-7890" disabled>
+      </div>
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" value="30" disabled>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" value="Male" disabled>
+      </div>
+      <div class="form-group">
+        <label for="appointmentDescription">Appointment Description:</label>
+        <textarea id="appointmentDescription" name="appointmentDescription" rows="4"required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="drugSelection">Drug Selection:</label>
+        <textarea id="drugSelection" name="drugSelection" rows="4"required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="action-btn" id="btn-submit" role="button">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!----------------------------------------- Appointment details End ----------------------------------------->
+
+
+
+
+
+
+
+
+
+  
+</section>
+
+<!--------------------------------- The page End --------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <script src="../js/dashboard_js.js"></script>
+  <script src="../css/fontawesome-free-6.4.0-web/js/all.js"></script>
+</body>
+</html>

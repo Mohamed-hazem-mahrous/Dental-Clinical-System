@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patients</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../../css/bootstrap.min.css.map" >
+    <link rel="stylesheet" href="../../css/Add_New_patient.css" >
+    <link rel="stylesheet" href="../../css/fontawesome-free-6.4.0-web/css/all.css">
+    <link rel="stylesheet" href="../../css/boxicons/boxicons-master/css/boxicons.min.css" >
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="sidebar opened">
+    <div class="logo-details">
+      <i class='bx bxl-tooth'></i>
+      <span class="logo_name">Dental Clinic</span>
+    </div>
+    <ul class="nav-links">
+  
+  
+      <!--------------------------------- dashboard --------------------------------->
+      <li>
+        <a href="dashboard.html">
+          <i class='bx bxs-dashboard'></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </li>
+  
+  
+          <!--------------------------------- Appointments --------------------------------->
+          <li>
+            <a href="appointments.html">
+              <i class='bx bx-calendar-event'></i>
+              <span class="link_name">Appointments</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="appointments.html">Appointments</a></li>
+            </ul>
+          </li>
+  
+  
+      <!--------------------------------- patient list --------------------------------->
+      <li>
+        <a href="patient.html">
+          <i class='bx bx-list-ul'></i>
+          <span class="link_name">Patient List</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="patient.html">Patient List</a></li>
+        </ul>
+      </li>
+  
+  
+      <!--------------------------------- assisstant --------------------------------->
+      <li>
+        <a href="assistants.html">
+          <i class='bx bx-group'></i>
+          <span class="link_name">Assisstants</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="assistants.html">Assisstants</a></li>
+        </ul>
+      </li>
+  
+      
+  
+      <!--------------------------------- profile --------------------------------->
+      <li>
+        <a href="profile.html">
+          <i class='bx bx-user'></i>
+          <span class="link_name">Profile</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="profile.html">Profile</a></li>
+        </ul>
+      </li>
+  
+  
+      <!--------------------------------- profile_name --------------------------------->
+      <li>
+        <div class="profile-details">
+          <div class="name-job">
+            <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Doctor</span></div>
+          </div>
+          <i class='bx bx-log-out'></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-----------------------------------page content --------------------------------------->
+<section class="home-section">
+
+    <!-- add doctor box -->
+    <div class="container" id="container">
+
+        <div class="form-container sign-in-container">
+            <form name = patient_form >
+                <div class="input-container">
+                    <div class="icon">
+                        <span>Name</span>
+                    </div>
+
+                    <div class="name-container">
+                        <input type="text" placeholder="First name" name="patientFname" required />
+                        <input type="text" placeholder="Last name" name="patientLname" required class="last-name" />
+                    </div>
+
+                </div>
+
+                <div class="input-container">
+                    <div class="icon">
+                        <span>Mobile</span>
+                    </div>
+                   <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                           type = "number" maxlength = "11" placeholder="Phone Number" name="patientMob" required />
+                </div>
+
+                <div class="input-container">
+                    <div class="icon">
+                        <span>Address</span>
+                    </div>
+                    <input type="text" placeholder="your address" name="RID" required />
+
+                </div>
+
+                <div class="radio-container">
+                    <div class="icon">
+                        <span>Gender</span>
+                    </div>
+                    <select name="gender" id="gender">
+                      <option value="">Select gender</option>
+                      <option value="male">male</option>
+                      <option value="female">female</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <div class="icon">
+                        <span>Age</span>
+                    </div>
+                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                           type = "number" maxlength = "3" placeholder="Age" name="docAge" required />
+                </div>
+
+                <button type="submit" >Add</button>
+            </form>
+        </div>
+ </section>
+<script src="..c/Add_New_patient.js"></script>
+</body>

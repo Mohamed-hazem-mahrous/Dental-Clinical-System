@@ -1,0 +1,85 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Document</title>
+</head>
+<body>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+<body style = "background-color: #e4e9f7">
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form action="#">
+
+          <form class="appointment-form" method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group name-container">
+              <input type="text" placeholder="First name" name="first_name"required style="width: 48%;" />
+              <input type="text" placeholder="Last name" name="last_name" required style="width: 48%;" />
+              <select  id="sex" name="sex" style="  width: 48%; margin-bottom: 7px;  padding: 8px; border: 1px solid #ddd; border-radius: 3px;" required>
+                <option value="">Select Gender</option>
+                <option value="male" name="sex">Male</option>
+                <option value="female" name="sex">Female</option>
+              </select>
+              <select  id="the_type" name="type"  style="  width: 48%; padding: 8px; border: 1px solid #ddd; border-radius: 3px;" required>
+                <option value="">Select Type</option>
+                <option value="Doctor" name="type">Doctor</option>
+                <option value="Assistance" name="type">Assisstant</option>
+              </select>
+              <input placeholder="Mobile" type="tel" id="mobile" name="mobile" required>
+              <label for="birth">Birth Date:</label>
+              <input type="date" id="birth" name="birth" required>
+              <input type="email" placeholder="Enter email" name="email" required>
+              <input type="password" placeholder="Enter Password" name="password" required>
+            </div>
+            <button type="submit" name = "signup" value = "signup" style = "background-color: 11101D" >Sign Up</button>
+          </form>
+
+
+
+
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form class="signin" action="#">
+         
+          <h1>Sign in</h1>
+          <span>or use your account</span>
+          <input type="email" placeholder="Email" name = "email" />
+          <input type="password" placeholder="Password" name = "password"/>
+          <ul class="messages">
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'email-pass-conflict error' %}<li class="error-field"> {{ message }} </li>{% endif %}
+            {% endfor %}
+            
+            {% endif %}
+          </ul>
+          <a href="#">Forgot your password?</a>
+          <button type="submit" name = "signin" value = "signin" style = "background-color: 11101D">Sign In</button>
+        </form>
+      </div>
+
+      <!-- the overlay -->
+      <div class="overlay-panel overlay-left"style = "background-color: 11101D;">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right" style = "background-color: 11101D;">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp">Sign Up</button>
+      </div>
+    </div> <!-- this is container -->
+  </body>
+    
+  <script src="{% static 'js/login.js' %}"></script>
+</body>
+</html>

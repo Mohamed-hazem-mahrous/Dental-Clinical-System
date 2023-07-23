@@ -1,0 +1,237 @@
+
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css.map' %}" >
+    <link rel="stylesheet" href="{% static 'css/dashboard_style.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/fontawesome-free-6.4.0-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/boxicons/boxicons-master/css/boxicons.min.css' %}" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+
+  <div class="sidebar opened">
+    <div class="logo-details">
+      <i class='bx bxl-tooth'></i>
+      <span class="logo_name">Dental Clinic</span>
+    </div>
+    <ul class="nav-links">
+  
+  
+      <!--------------------------------- dashboard ------------------------------------>
+      <li>
+        <a href="dashboard.html">
+          <i class='bx bxs-dashboard'></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </li>
+  
+  
+          <!--------------------------------- Appointments ---------------------------------->
+          <li>
+            <a href="appointments.html">
+              <i class='bx bx-calendar-event'></i>
+              <span class="link_name">Appointments</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="appointments.html">Appointments</a></li>
+            </ul>
+          </li>
+  
+  
+      <!--------------------------------- patient list ---------------------------------->
+      <li>
+        <a href="patient.html">
+          <i class='bx bx-list-ul'></i>
+          <span class="link_name">Patient List</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="patient.html">Patient List</a></li>
+        </ul>
+      </li>
+  
+  
+      <!--------------------------------- assisstant ---------------------------------->
+      <li>
+        <a href="assistants.html">
+          <i class='bx bx-group'></i>
+          <span class="link_name">Assisstants</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="assistants.html">Assisstants</a></li>
+        </ul>
+      </li>
+  
+      
+  
+      <!--------------------------------- profile ---------------------------------->
+      <li>
+        <a href="profile.html">
+          <i class='bx bx-user'></i>
+          <span class="link_name">Profile</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="profile.html">Profile</a></li>
+        </ul>
+      </li>
+  
+  
+      <!--------------------------------- profile_name ---------------------------------->
+      <li>
+        <div class="profile-details">
+          <div class="name-job">
+            <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Doctor</span></div>
+          </div>
+          {% comment %} <i class='bx bx-log-out' href = 'login.html' ></i> {% endcomment %}
+          <a href= {% url "login" %}>
+            <i class="bx bx-log-out"></i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+<!--------------------------------- The page ---------------------------------->
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu'></i>
+    <span class="text">Dashboard</span>
+  </div>
+
+
+
+
+
+
+
+<!--------------------------------- some details ---------------------------------->
+
+  </div>
+
+
+<div class="main">
+  <div class="cards">
+    <div class="card">
+      <div class="catd-content">
+        <div class="number">{{no_app}}</div>
+        <div class="card-name">Appointments today</div>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-user-clock mr-2 icon" id = "awesom-icon"></i>
+      </div>
+    </div>
+
+
+
+    <div class="card">
+      <div class="catd-content">
+        <div class="number">{{patients_thismonth_count}}</div>
+        <div class="card-name">Patients this months</div>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-calendar-alt" id = "awesom-icon"></i>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="card">
+      <div class="catd-content">
+        <div class="number">{{patients_count}}</div>
+        <div class="card-name">Total Patients</div>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-users mr-2 icon" id = "awesom-icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="chart_div1" class="chart"></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+</section>
+
+
+
+
+
+
+<script>
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart1);
+
+  function drawChart1() {
+    var data = google.visualization.arrayToDataTable([
+      ['Month', 'Done', 'Undone'],
+      ['Jun',  24,      17],
+      ['Feb',  28,      15],
+      ['Mar',  27,       10],
+      ['Apr',  23,      20],
+      ['May',  30,       11],
+      ['Jun',  33,       9],
+      ['Jul',  0,       0],
+      ['Aug',  0,       0],
+      ['Sep',  0,       0],
+      ['Oct',  0,       0],
+      ['Nov',  0,       0],
+      ['Dec',  0,       0]
+    ]);
+
+    var year = 2023
+    var options = {
+      title: 'Statistical Treatment Performance for the clinical at Year ' + year,
+      hAxis: {title: 'Month', titleTextStyle: {color: 'red'}}
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+    chart.draw(data, options);
+  }
+
+ 
+  $(window).resize(function(){
+    drawChart1();
+  });
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+      <script src="{% static 'js/dashboard_js.js' %}"></script>
+      <script src="{% static 'js/Chart.min.js' %}"></script>
+      <script src="{% static 'css/fontawesome-free-6.4.0-web/js/all.js' %}"></script>
+</body>
+</html>
+

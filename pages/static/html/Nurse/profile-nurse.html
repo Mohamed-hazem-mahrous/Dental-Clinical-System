@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<link rel="stylesheet" href="../../css/bootstrap.min.css.map" >
+<link rel="stylesheet" href="../../css/profile.css" >
+<link rel="stylesheet" href="../../css/fontawesome-free-6.4.0-web/css/all.css">
+<link rel="stylesheet" href="../../css/boxicons/boxicons-master/css/boxicons.min.css" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="sidebar opened">
+    <div class="logo-details">
+      <i class='bx bxl-tooth'></i>
+      <span class="logo_name">Dental Clinic</span>
+    </div>
+    <ul class="nav-links">
+  
+  
+      <!--------------------------------- dashboard --------------------------------->
+      <li>
+        <a href="dashboard - nurse.html">
+          <i class='bx bxs-dashboard'></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="dashboard - nurse.html">Dashboard</a></li>
+        </ul>
+      </li>
+  
+  
+          <!--------------------------------- Appointments --------------------------------->
+          <li>
+            <a href="appointments - nurse.html">
+              <i class='bx bx-calendar-event'></i>
+              <span class="link_name">Appointments</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="appointments - nurse.html">Appointments</a></li>
+            </ul>
+          </li>
+  
+  
+      <!--------------------------------- patient list --------------------------------->
+      <li>
+        <a href="patient-nurse.html">
+          <i class='bx bx-list-ul'></i>
+          <span class="link_name">Patient List</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="patient-nurse.html">Patient List</a></li>
+        </ul>
+      </li>
+  
+  
+      
+  
+      <!--------------------------------- profile --------------------------------->
+      <li>
+        <a href="profile-nurse.html">
+          <i class='bx bx-user'></i>
+          <span class="link_name">Profile</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="profile-nurse.html">Profile</a></li>
+        </ul>
+      </li>
+  
+  
+      <!--------------------------------- profile_name --------------------------------->
+      <li>
+        <div class="profile-details">
+          <div class="name-job">
+            <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Nurse</span></div>
+          </div>
+          <i class='bx bx-log-out'></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+<!--**********************************-->
+<form id="myForm">
+
+  <label for="doctor-name">Name:</label>
+  <input type="text" id="doctor-name" name="name" value="omar eyad" required disabled>
+
+  <label for="doctor-age">Age:</label>
+  <input type="number" id="doctor-age" name="age"  value="20" required>
+
+  <label for="doctor-mobile">Mobile:</label>
+  <input type="tel" id="doctor-mobile" name="mobile"  value="01187654321" required >
+
+  <label for="doctor-gender">Gender:</label>
+  <select id="doctor-gender" name="gender"  disabled>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+
+  <label for="doctor-address">Address:</label>
+  <textarea id="doctor-address" name="address" rows="4" cols="40"  required >cairo</textarea>
+
+
+  <br>
+  <div class="form-row">
+    <label for="doctor-hours-start">Working Hours:</label>
+    <input type="time" id="doctor-hours-start" name="hours" value="08:00" >
+    <span>to</span>
+    <input type="time" id="doctor-hours-end" name="hours" value="17:00">
+    <br>
+
+    <input type="time" id="doctor-hours-start2" name="hours" value="09:00" >
+      <span>to</span>
+      <input type="time" id="doctor-hours-end2" name="hours" value="18:00" >
+    </div>
+  </div>
+
+  <label for="doctor-id">E-mail:</label>
+  <input type="text" id="doctor-id" name="id"  value="omar@gmail.com" required >
+
+
+
+  <button type="submit" id="toggleButton">Save</button>
+</form>
+
+</body>
+<script src="../../js/profile.js"></script>
+</html>

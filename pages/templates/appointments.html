@@ -1,0 +1,428 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointment</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css.map' %}" >
+    <link rel="stylesheet" href="{% static 'css/appointments_style.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/fontawesome-free-6.4.0-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/boxicons/boxicons-master/css/boxicons.min.css' %}" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+  <!------------------------------ The Sidebar Sart ------------------------------>
+
+  <div class="sidebar opened">
+  <div class="logo-details">
+    <i class='bx bxl-tooth'></i>
+    <span class="logo_name">Dental Clinic</span>
+  </div>
+  <ul class="nav-links">
+
+
+    <!--------------------------------- dashboard -------------------------------
+    -->
+    <li>
+      <a href="dashboard.html">
+        <i class='bx bxs-dashboard'></i>
+        <span class="link_name">Dashboard</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="dashboard.html">Dashboard</a></li>
+      </ul>
+    </li>
+
+
+       
+        <li>
+          <a href="appointments.html">
+            <i class='bx bx-calendar-event'></i>
+            <span class="link_name">Appointments</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="appointments.html">Appointments</a></li>
+          </ul>
+        </li>
+
+
+    
+    <li>
+      <a href="patient.html">
+        <i class='bx bx-list-ul'></i>
+        <span class="link_name">Patient List</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="patient.html">Patient List</a></li>
+      </ul>
+    </li>
+
+
+    <li>
+      <a href="assistants.html">
+        <i class='bx bx-group'></i>
+        <span class="link_name">Assisstants</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="assistants.html">Assisstants</a></li>
+      </ul>
+    </li>
+
+    
+
+    <li>
+      <a href="profile.html">
+        <i class='bx bx-user'></i>
+        <span class="link_name">Profile</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="profile.html">Profile</a></li>
+      </ul>
+    </li>
+
+
+    <li>
+      <div class="profile-details">
+        <div class="name-job">
+          <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Doctor</span></div>
+        </div>
+        <a href= {% url "login" %}>
+          <i class="bx bx-log-out"></i>
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>
+  
+
+
+
+
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu'></i>
+
+    <span class="text">Appointments</span>
+  </div>
+
+
+  <section class="appointments-section">
+
+
+
+    
+
+    <!-- The Add Appointment Button -->
+    <span class="add-app">
+
+      <div class="aapp-date-chooseing">
+        <form id="date-form" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="datefilter" value="yes">
+          <input type="date" id="date" name="date" required style=" position:absolute; right:32px; width:200px; height:45px;">
+        </form>
+      </div>
+<!-- old was like this
+      <button class="add-app-btn" role="button"
+              onclick="document.querySelector('.app-new').style.display = 'block'"><span
+              class="text">Add Appointment</span></button> -->
+
+      <button class="add-app-btn" role="button" onclick="window.open('Add_new_appointment', '_blank');">
+        <span class="text">Add Appointment</span>
+    </button>
+     
+    </span>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="table-app">
+    <table class="appointments-table">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Number</th>
+          <th>Appointment Date</th>
+          <th>Appointment Time</th>
+          <th>Appointment Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+  <!-- Individual appointment row -->
+                {% if appointments %}
+                    {% for appointment in appointments %}
+                        <tr>
+                            <td>
+                                <span class="patient-name"> {{ appointment.pid.fname }} {{ appointment.pid.lname }}</span>
+                            </td>
+                            <td>0{{ appointment.pid.mobile }}</td>
+                            <td>{{ appointment.date }}</td>
+                            <td>{{ appointment.time }}</td>
+                            <td>{{ appointment.get_app_type_display }}</td>
+                            <td>
+                                <h1 hidden>{{ appointment.id }}</h1>
+                                <button class="action-btn" id="btn-blue" role="button"
+                                        onclick="appoint_report(this, {{appointment.pid.id}} )" style = "background-color: #3498db; border-radius: 20px;">Report
+                                </button>
+                                <form method="POST" style="display: inline;">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="app_to_del" value="{{appointment.id}}">
+                                  <!-- <button class="action-btn" role="button" onclick="removeRow(this)">Cancel</button> -->
+                                  <button type="submit" class="action-btn" role="button" style = "background-color: #bb736d; border-radius: 20px;" >Cancel</button>
+
+                                </form>
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                <!-- Individual appointment row end -->
+
+        <!-- Individual appointment rows -->
+        <!-- <tr>
+          <td>
+            <span class="patient-name">John Doe</span>
+          </td>
+          <td>01033799708</td>
+          <td>May 20, 2023</td>
+          <td>10:30</td>
+          <td>Appointment</td>
+          <td>
+            <button class="action-btn" id="btn-blue" role="button" onclick="document.querySelector('.popup').style.display = 'block'">Report</button>
+            <button class="action-btn" role="button" onclick="removeRow(this)">Cancel</button>
+
+          </td>
+        </tr> -->
+        
+      </tbody>
+    </table>
+  </div>
+  </section>
+
+
+
+
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-app" onclick="document.querySelector('.popup').style.display = 'none'">&times;</span>
+        <h2>Report</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="reportedit" value="yes">
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" value="123456" disabled>
+                <input type="hidden" name="app_id_hidden" value="">
+
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="John Doe" disabled>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" id="mobile" name="mobile" value="123-456-7890" disabled>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="text" id="age" name="age" value="30" disabled>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" value="Male" disabled>
+            </div>
+            <div class="form-group">
+                <label for="appointmentDescription">Appointment Description:</label>
+                <textarea id="appointmentDescription" name="appointmentDescription" rows="4" required></textarea>
+
+            </div>
+            <div class="form-group">
+                <label for="drugSelection">Drug Selection:</label>
+                <textarea id="drugSelection" name="drugSelection" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="action-btn" id="btn-submit" role="button">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+  
+</section>
+
+
+
+<script>
+  
+    function openPage(pageName, elmnt, color) {
+        // Hide all elements with class="tabcontent" by default */
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove the background color of all tablinks/buttons
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+
+        // Show the specific tab content
+        document.getElementById(pageName).style.display = "block";
+
+        // Add the specific color to the button used to open the tab content
+        elmnt.style.backgroundColor = color;
+    }
+    
+    // Get the element with id="defaultOpen" and click on it
+    //document.getElementById("defaultOpen").click();
+    
+
+    function removeRow(button) {
+        // Get the reference to the table row (tr) containing the button
+        var row = button.parentNode.parentNode;
+
+        // Remove the row from the table
+        row.parentNode.removeChild(row);
+    }
+    
+    function appoint_report(elem, pid) {
+        document.querySelector('.popup').style.display = 'block'
+        appoint_id = elem.parentElement.querySelector('h1').innerHTML
+        inputs = document.querySelectorAll('.popup input')
+        // Getting Patient Information
+        $.ajax({
+            type: 'GET',
+            url: 'getforview/',
+            data: {
+                'query': pid,
+            },
+            success: function (response) {
+                res = response['result'][0]
+
+                /*
+                0 'csrfmiddlewaretoken'
+appointments.html:496 1 'reportedit'
+appointments.html:496 2 'id'
+appointments.html:496 3 'name'
+appointments.html:496 4 'mobile'
+appointments.html:496 5 'age'
+appointments.html:496 6 'gender'
+                */
+                for (let i = 0; i < inputs.length; i++)
+                {
+                  console.log(i, inputs[i].name)
+                }
+                /*
+                0 'csrfmiddlewaretoken'
+appointments.html:480 1 'reportedit'
+appointments.html:480 2 'id'
+appointments.html:480 3 'app_id_hidden'
+appointments.html:480 4 'name'
+appointments.html:480 5 'mobile'
+appointments.html:480 6 'age'
+appointments.html:480 7 'gender'
+                */
+                inputs[4].value = res['fname'] + " " + res['lname']
+                inputs[5].value = res['mobile']
+                inputs[6].value = res['age']
+                inputs[7].value = res['gender']
+
+                text_areas = document.querySelectorAll('.popup textarea')
+                //<textarea id="appointmentDescription" name="appointmentDescription" rows="4" required></textarea>
+                text_areas[0].value = res['description']
+                text_areas[1].value = res['prescription']
+
+            },
+            error: function () {
+                alert("Fetch Error.");
+                res = null
+            }
+        });
+
+        // Getting Appointment Information
+        $.ajax({
+            type: 'GET',
+            url: 'getappinfo/',
+            data: {
+                'query': appoint_id,
+            },
+            success: function (response) {
+                res = response['result'][0]
+
+                
+
+                inputs[3].value = res['id']
+                document.querySelector('input[name="app_id_hidden"]').value = res['id']
+
+
+                text_areas = document.querySelectorAll('.popup textarea')
+                //<textarea id="appointmentDescription" name="appointmentDescription" rows="4" required></textarea>
+                text_areas[0].value = res['description']
+                text_areas[1].value = res['prescription']
+
+            },
+            error: function () {
+                alert("Fetch Error.");
+                res = null
+            }
+        });
+
+    }
+
+
+    
+    function edit_appoint()
+    {
+
+    }
+
+    function filter_date() {
+        
+        document.querySelector("#date-form").submit()
+    }
+
+    document.querySelector('#date').onchange = filter_date
+
+</script>
+
+
+
+
+
+  <script src="{% static 'js/dashboard_js.js' %}"></script>
+  <script src="{% static 'css/fontawesome-free-6.4.0-web/js/all.js' %}"></script>
+  <script src="{% static 'js/ajax.googleapis.com_ajax_libs_jquery_3.6.4_jquery.min.js' %}"></script>
+</body>
+</html>

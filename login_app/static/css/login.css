@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #dee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
+
+h1 { font-weight: bold; }
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span { font-size: 13px; }
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.container {
+  background: #eee;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 90%;
+  overflow: auto;
+}
+
+.form-container form {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 115%;
+
+}
+.form-container .signin{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.social-container { margin: 20px 0; }
+
+.social-container a {
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.form-container input {
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid #ff4b2b;
+  background: #163458;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active { transform: scale(0.9); }
+
+button:focus { outline: none; }
+
+button.ghost {
+  background: transparent;
+  border-color: #fff;
+}
+
+.form-container {
+  /*
+    because of this signUp and signIn are in the same
+    position. That's why we can't see the signUp
+   */
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.overlay-panel {
+  /*
+    because of this signUp and signIn are in the same
+    position. That's why we can't see the signUp
+   */
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #163458;
+  color: white;
+  height: 115%;
+  transition: all 0.6s ease-in-out;
+}
+
+.overlay-right { z-index: 4; }
+
+.overlay-left {
+  left: -50%;
+  z-index: 3;
+}
+
+/* Animation */
+
+/*  Move signin to the right */
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+/* Bring sign up over sign in */
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 3;
+}
+/* Move overlay to left */
+.container.right-panel-active .overlay-left {
+  transform: translateX(100%);
+  z-index: 4;
+}
+.container.right-panel-active .overlay-right {
+  transform: translateX(-100%);
+  z-index: 3;
+}
+
+/* Move overlay back to the right */
+.container.move-back .overlay-left {
+  transform: translateX(0);
+}
+
+.container.move-back .overlay-right {
+  transform: translateX(0);
+}
+
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 95vw;
+    max-width: 100%;
+    margin: 0 2.5vw;
+  }
+  
+  .form-container form,
+  .overlay-panel {
+    padding: 0 10px;
+  } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.appointment-form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  color: black;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+  
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.name-container{
+    width: 260px;
+    position: relative;
+    display: grid;
+    display: flex;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+    padding: 5px 0;
+}

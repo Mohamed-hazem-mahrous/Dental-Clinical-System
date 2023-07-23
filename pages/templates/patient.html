@@ -1,0 +1,287 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Patients</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css.map' %}">
+    <link rel="stylesheet" href="{% static 'css/patient.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-free-6.4.0-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/boxicons/boxicons-master/css/boxicons.min.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body>
+<div class="sidebar opened">
+    <div class="logo-details">
+        <i class='bx bxl-tooth'></i>
+        <span class="logo_name">Dental Clinic</span>
+    </div>
+    <ul class="nav-links">
+        <!--------------------------------- dashboard ---------------------------------->
+        <li>
+            <a href="dashboard.html">
+                <i class='bx bxs-dashboard'></i>
+                <span class="link_name">Dashboard</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </li>
+
+
+        <!--------------------------------- Appointments ---------------------------------->
+        <li>
+            <a href="appointments.html">
+                <i class='bx bx-calendar-event'></i>
+                <span class="link_name">Appointments</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="appointments.html">Appointments</a></li>
+            </ul>
+        </li>
+
+
+        <!--------------------------------- patient list ---------------------------------->
+        <li>
+            <a href="patient.html">
+                <i class='bx bx-list-ul'></i>
+                <span class="link_name">Patient List</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="patient.html">Patient List</a></li>
+            </ul>
+        </li>
+
+
+        <!--------------------------------- assisstant ---------------------------------->
+        <li>
+            <a href="assistants.html">
+                <i class='bx bx-group'></i>
+                <span class="link_name">Assisstants</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="assistants.html">Assisstants</a></li>
+            </ul>
+        </li>
+
+
+        <!--------------------------------- profile ---------------------------------->
+        <li>
+            <a href="profile.html">
+                <i class='bx bx-user'></i>
+                <span class="link_name">Profile</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="profile.html">Profile</a></li>
+            </ul>
+        </li>
+
+
+        <!--------------------------------- profile_name ---------------------------------->
+        <li>
+            <div class="profile-details">
+                <div class="name-job">
+                    <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Doctor</span></div>
+                </div>
+                <a href= {% url "login" %}>
+                    <i class="bx bx-log-out"></i>
+                  </a>
+            </div>
+            -
+        </li>
+    </ul>
+</div>
+<!--------------------------------- The page ---------------------------------->
+
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+        <span class="text">Patients</span>
+    </div>
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <!---->
+                    <span class="row" style="width: 90%">
+                            <div class="col-sm-5">
+                                <button class="add-patient-btn" role="button" name='addpatient'><span class="text">
+                                    <a style="text-decoration: none; color:#fff" href="{% url 'Add_New_patient' %}"> + Add patient</a></span>
+                                </button>
+                                 
+                            </div>
+                            <div class="col-sm-7">
+
+                                <div class="search-box">
+                                  <form class="d-flex" role="search" method="POST">
+                                    {% csrf_token %}
+                                    <input style="width:240%;" class="form-control" name="search_content" type="text" class="form-control"
+                                           placeholder="Search with id or name">
+
+
+                                    <button type="submit" class="btn-action" style="width:25%; padding: 5px 10px;border: none; background-color: #3498db; color: #fff; cursor: pointer; border-radius: 8px;">Search</button>
+                                  </form>
+                                </div>
+                            </div>
+                        </span>
+                </div>
+                <table class="patients-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th> <!--take care to incremeant this while adding a row-->
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Number</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Individual patient rows -->
+                    {% if records %}
+                        {% for patient in records %}
+                            <tr>
+                                <td>
+                                    <span class="PID">{{ patient.id }}</span>
+
+                                </td>
+                                <td><span class="first_name"></span>
+                                    {{ patient.fname }}
+                                </td>
+                                <td><span class="last_name"></span>
+                                    {{ patient.lname }}
+                                </td>
+                                <td><span class="Age"></span>
+                                    {{ patient.age }}
+                                </td>
+                                <td><span class="gender"></span>
+                                    {{ patient.get_gender_display }}
+                                </td>
+                                <td><span class="number"></span>
+                                    {{ patient.mobile }}
+                                </td>
+                                <td><span class="address"></span>
+                                    {{ patient.address }}
+                                </td>
+                                <td>
+                                    <input type="hidden" value="{% url 'getforview' %}" id="getforview">
+                                    <input type="hidden" value="{% url 'editpatient' %}" id="editpatient">
+
+                                    <button style="width:25%; padding: 5px 10px;border: none; background-color: #3498db; color: #fff; cursor: pointer; border-radius: 20px;" type="button" class="btn-action" id="view" onclick="view_patient(this)">
+                                        View
+                                    </button>
+                                    <button style="width:25%; padding: 5px 10px;border: none; background-color: #380d4b; color: #fff; cursor: pointer; border-radius: 20px;" type="button" class="btn-action" id="edit" onclick="edit_patient(this)">
+                                        Edit
+                                    </button>
+                                    <form method="POST" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id_to_del" value="{{patient.id}}">
+                                        <button style="width:33%; padding: 5px 10px;border: none; background-color: #bb736d; color: #fff; cursor: pointer; border-radius: 20px;" type="submit" class="btn-action" id="Remove">
+                                            Remove
+                                        </button>
+                                    </form>
+                                    
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+
+                    </tbody>
+                </table>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- this is the popup block for view only-->
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-app" onclick="document.querySelector('.popup').style.display = 'none'">&times;</span>
+            <h2>Patient information</h2>
+            <form>
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="id" value='77' disabled>
+                </div>
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <input type="text" id="fname" name="fname" value="farah" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name:</label>
+                    <input type="text" id="lname" name="lname" value="Ossama" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile:</label>
+                    <input type="text" id="mobile" name="mobile" value="123-456-7890" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age" value="30" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <input type="text" id="gender" name="gender" value="Male" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="Address">Address:</label>
+                    <input type="text" id="Address" name="Address" disabled>
+                </div>
+                <div class="form-group">
+                    <button type="submit">ok</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--this is the popup for edit only-->
+    <div id="popup" class="popup_1">
+        <div class="popup-content">
+            <span class="close-app" onclick="document.querySelector('.popup_1').style.display = 'none'">&times;</span>
+            <h2>patient information</h2>
+            <form method="POST" id="edit-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="id" value="123456" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <input type="text" id="fname" name="fname" value="farah">
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name:</label>
+                    <input type="text" id="lname" name="lname" value="Ossama">
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile:</label>
+                    <input type="text" id="mobile" name="mobile" value="123-456-7890" maxlength="11">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age" value="30">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <input type="text" id="gender" name="gender" value="Male">
+                </div>
+                <div class="form-group">
+                    <label for="Address">Address:</label>
+                    <input type="text" id="Address" name="Address" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/ajax.googleapis.com_ajax_libs_jquery_3.6.4_jquery.min.js' %}"></script>
+<script src="{% static 'js/patient.js' %}"></script>
+</body>

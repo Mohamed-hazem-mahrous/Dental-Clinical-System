@@ -1,0 +1,77 @@
+{% load static %}
+
+<div class="sidebar opened">
+    <div class="logo-details">
+      <i class='bx bxl-tooth'></i>
+      <span class="logo_name">Dental Clinic</span>
+    </div>
+    <ul class="nav-links">
+    </ul>
+  </div>
+  
+      <li>
+        <a href="{% url 'dashboard' %}">
+          <i class='bx bx-grid-alt'></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'dashboard' %}">Dashboard</a></li>
+        </ul>
+      </li>
+  
+  
+      <li>
+        <a href="{% url 'home' %}">
+          <i class='bx bx-list-ul'></i>
+          <span class="link_name">Appointments</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'home' %}">Appointments</a></li>
+        </ul>
+      </li>
+  
+      <li>
+        <a href="{% url 'patient' %}">
+          <i class='bx bx-list-ul'></i>
+          <span class="link_name">Patient List</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'patient' %}">Patient List</a></li>
+        </ul>
+      </li>
+  
+      <li>
+        <a href="{% url 'assistants' %}">
+          <i class='bx bx-group'></i>
+          <span class="link_name">Assisstants</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Assisstants</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="profile.html">
+          <i class='bx bx-user'></i>
+          <span class="link_name">Profile</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Profile</a></li>
+        </ul>
+      </li>
+  
+  
+      <li>
+        <div class="profile-details">
+          <div class="name-job">
+            <div class="profile_name"><span class="link_name" style="margin-left: 30px;">Doctor</span></div>
+          </div>
+          <i class='bx bx-log-out'></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  
+  
+  
