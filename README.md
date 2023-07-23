@@ -52,7 +52,20 @@ The Dental Clinical System provides the following features:
 ## Screenshots
 Here are some screenshots of the Dental Clinical System:
 
-*(Add your screenshots here or provide links to them)*
+- Dashboard
+  ![Dashboard](images/DashBoard.jpg)
+
+- Assistant View
+  ![Assistant](images/Assisstants.jpg)
+
+- Appointment View
+  ![Appointment](images/Appointments.jpg)
+
+- Patients View
+  ![Patients](images/Patients.jpg)
+
+- Profile View
+  ![Profile](images/Profile.jpg)
 
 ## How to Run the Project
 To run the Dental Clinical System, follow these steps:
@@ -76,4 +89,3 @@ To run the Dental Clinical System, follow these steps:
 
 You are now ready to use the Dental Clinical System! If you encounter any issues or have questions, please refer to the documentation or contact the team members mentioned above.
 
-*Note: Remember to keep your database credentials secure and do not share sensitive information in the README file.*
