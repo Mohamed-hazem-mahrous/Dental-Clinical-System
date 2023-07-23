@@ -53,19 +53,19 @@ The Dental Clinical System provides the following features:
 Here are some screenshots of the Dental Clinical System:
 
 - Dashboard
-  ![Dashboard](images/DashBoard.jpg)
+  ![Dashboard](Images/DashBoard.jpg)
 
 - Assistant View
-  ![Assistant](images/Assisstants.jpg)
+  ![Assistant](Images/Assisstants.jpg)
 
 - Appointment View
-  ![Appointment](images/Appointments.jpg)
+  ![Appointment](Images/Appointments.jpg)
 
 - Patients View
-  ![Patients](images/Patients.jpg)
+  ![Patients](Images/Patients.jpg)
 
 - Profile View
-  ![Profile](images/Profile.jpg)
+  ![Profile](Images/Profile.jpg)
 
 ## How to Run the Project
 To run the Dental Clinical System, follow these steps:
